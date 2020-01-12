@@ -1,0 +1,22 @@
+<div class="read-machine-data">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Serial number</td>
+      <td>Guarantee</td>
+      <td>Game Type</td>
+      <td>Delete</td>
+    </tr>
+    <% for(var i=0; i<machines.length; i++){ %>
+      <tr>
+        <td><%= machines[i].name %></td>
+        <td><%= machines[i].serial_number %></td>
+        <td><%= machines[i].end_of_guarantee_date.toISOString().split('T')[0] %></td>
+        <td><%= machines[i].game_type_name %></td>
+        <td>
+          <form action="<%= machineURL(machines[i].id) %>?_method=delete" method="post"><input type="submit" value="Delete"></form>
+        </td>
+      </tr>
+    <% } %>
+  </table>
+</div>

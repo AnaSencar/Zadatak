@@ -1,0 +1,43 @@
+<div class="add-machine">
+  <form method="post">
+    <input type="text" name="name" placeholder="name" required class="add" value="<%= oldInputs.name %>">
+    <span class="error-msg"><% if(errorMsgs.name!==null) { %>
+      <%= errorMsgs.name %>
+      <% } %>
+    </span>
+    <br>
+    <input type="number" name="serial_number" placeholder="serial number" required class="add" value="<%= oldInputs.serial_number %>">
+    <span class="error-msg"><% if(errorMsgs.serial_number!==null) { %>
+      <%= errorMsgs.serial_number %>
+      <% } %>
+    </span>
+    <br>
+    <input type="date" name="end_of_guarantee_date" placeholder="guarantee" required class="add" value="<%= oldInputs.end_of_guarantee_date %>">
+    <span class="error-msg"><% if(errorMsgs.end_of_guarantee_date!==null) { %>
+      <%= errorMsgs.end_of_guarantee_date %>
+      <% } %>
+    </span>
+    <br>
+    <select name="game_type_id">
+      <% for(var i=0; i<types.length; i++){ %>
+        <option value="<%= types[i].id %>"
+          <% if(oldInputs.game_type_id===(''+types[i].id)) { %>
+          selected
+          <% } %>
+        >
+          <%= types[i].name %>
+        </option>
+      <% } %>
+    </select>
+    <span class="error-msg"><% if(errorMsgs.game_type_id!==null) { %>
+      <%= errorMsgs.game_type_id %>
+      <% } %>
+    </span>
+    <br>
+    <input type="submit" value="Add machine" class="add">
+    <span class="error-msg"><% if(errorMsgs.database!==null) { %>
+      <%= errorMsgs.database %>
+      <% } %>
+    </span>
+  </form>
+</div>

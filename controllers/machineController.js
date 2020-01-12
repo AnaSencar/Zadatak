@@ -5,19 +5,43 @@ const gameTypes = require('../models/game_types');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app){
+
   app.get('/machine', async function(req, res){
-    const machines = await gameMachines.getAllMachines();
-    const types = await gameTypes.getAllTypes();
+    const {isError, errorMsgs, oldInputs} = gameMachines.noValidationState();
     res.render('machine', {
-      machines: machines,
-      types: types,
-      machineURL: (id) => "/machine/" + id
+      machineData: {
+        machines: await gameMachines.getAllMachines(),
+        machineURL: (id) => "/machine/" + id
+      },
+      formData: {
+        isError,
+        errorMsgs,
+        oldInputs,
+        types: await gameTypes.getAllTypes()
+      }
     });
   });
 
   app.post('/machine', urlencodedParser, async function(req, res){
-    await gameMachines.addNewMachine(req.body);
-    res.redirect(303, '/machine');
+    const {isError, errorMsgs, oldInputs} = await gameMachines.addNewMachine(req.body);
+    if(!isError){
+      res.redirect(303, '/machine');
+    }
+    else {
+      //res.status(400);
+      res.render('machine', {
+        machineData: {
+          machines: await gameMachines.getAllMachines(),
+          machineURL: (id) => "/machine/" + id
+        },
+        formData: {
+          isError,
+          errorMsgs,
+          oldInputs,
+          types: await gameTypes.getAllTypes()
+        }
+      });
+    }
   });
 
   app.delete('/machine/:id', async function(req, res){

@@ -22,3 +22,8 @@ td {
   padding-bottom: 8px;
   text-align: center;
 }
+
+span.error-msg {
+  font-style: italic;
+  color: #FF0000;
+}
