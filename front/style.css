@@ -1,0 +1,24 @@
+div.add-machine, div.read-machine-data {
+  margin: 25px;
+}
+
+input.add  {
+  margin-bottom: 5px;
+}
+
+select {
+  margin-bottom: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, tr, td {
+  border: 1px solid black;
+}
+
+td {
+  padding-bottom: 8px;
+  text-align: center;
+}
