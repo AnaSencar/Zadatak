@@ -14,7 +14,7 @@ mysqlConnection.connect((err)=>{
         console.log("Connected");
     }
     else{
-        console.log("Connection failed");
+        throw new Error("Connection failed");
     }
 });
 

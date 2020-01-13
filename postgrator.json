@@ -1,0 +1,8 @@
+{
+    "migrationDirectory": "migrations",
+    "driver": "mysql2",
+    "host": "localhost",
+    "database": "admiral_2020_zadatak",
+    "username": "admiral",
+    "password": "baza"
+}
